@@ -1,14 +1,13 @@
+require('dotenv').config();
 const router = require('express').Router();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-const settings = require('../settings.json');
-
 passport.use(new GoogleStrategy(
     {
-        clientID: settings.client_id,
-        clientSecret: settings.client_secret,
-        callbackURL: settings.callback_url
+        clientID: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        callbackURL: process.env.CALLBACK_URL
     },
     (accessToken, refreshToken, profile, done) => {
         User.findOrCreate({ googleId: profile.id }, (err, user) => {

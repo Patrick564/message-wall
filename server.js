@@ -13,8 +13,7 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.get('', homeRouter);
-
+app.use('', homeRouter);
 app.use('/login', loginRouter);
 
 
