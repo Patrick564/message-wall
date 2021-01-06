@@ -3,6 +3,16 @@ const router = require('express').Router();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+        DelayNode(err, user);
+    });
+});
+
 passport.use(new GoogleStrategy(
     {
         clientID: process.env.CLIENT_ID,
