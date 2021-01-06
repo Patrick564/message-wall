@@ -4,6 +4,7 @@ const session = require('express-session');
 
 const homeRouter = require('./routes/home');
 const loginRouter = require('./routes/login');
+const userRouter = require('./routes/user');
 
 const app = express();
 const port = 5000;
@@ -24,6 +25,7 @@ app.set('views', './views');
 
 app.use('', homeRouter);
 app.use('/login', loginRouter);
+app.use('/user', userRouter);
 
 
 app.listen(port, () => {

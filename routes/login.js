@@ -4,13 +4,14 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-        DelayNode(err, user);
-    });
+passport.deserializeUser((user, done) => {
+    // User.findById(id, (err, user) => {
+    //     DelayNode(err, user);
+    // });
+    done(null, user);
 });
 
 passport.use(new GoogleStrategy(
@@ -20,9 +21,11 @@ passport.use(new GoogleStrategy(
         callbackURL: process.env.CALLBACK_URL
     },
     (accessToken, refreshToken, profile, done) => {
-        User.findOrCreate({ googleId: profile.id }, (err, user) => {
-            return done(err, user);
-        });
+        // User.findOrCreate({ googleId: profile.id }, (err, user) => {
+        //     return done(err, user);
+        // });
+        console.log(profile._json);
+        return done(null, profile);
     }
 ));
 
