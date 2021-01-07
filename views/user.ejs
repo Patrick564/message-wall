@@ -7,5 +7,9 @@
 </head>
 <body>
     User info
+
+    <% for (let field of Object.values(user)) { %>
+        <%- field %>
+    <% } %>
 </body>
 </html>

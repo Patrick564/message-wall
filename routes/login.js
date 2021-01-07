@@ -25,7 +25,7 @@ passport.use(new GoogleStrategy(
         //     return done(err, user);
         // });
         console.log(profile._json);
-        return done(null, profile);
+        return done(null, profile._json);
     }
 ));
 
