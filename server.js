@@ -9,7 +9,6 @@ const userRouter = require('./routes/user');
 const app = express();
 const port = 5000;
 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session({
@@ -26,7 +25,6 @@ app.set('views', './views');
 app.use('', homeRouter);
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
-
 
 app.listen(port, () => {
     console.log(`Server listen at port ${port}`);

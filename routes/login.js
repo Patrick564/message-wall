@@ -24,7 +24,6 @@ passport.use(new GoogleStrategy(
         // User.findOrCreate({ googleId: profile.id }, (err, user) => {
         //     return done(err, user);
         // });
-        console.log(profile._json);
         return done(null, profile._json);
     }
 ));
@@ -43,8 +42,7 @@ router.get(
     '/auth/google/done',
     passport.authenticate('google', { failureRedirect: '/login' }),
     (req, res, next) => {
-        console.log(req.user);
-        res.redirect('/');
+        res.redirect('/user');
     }
 );
 

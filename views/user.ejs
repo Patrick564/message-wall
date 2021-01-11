@@ -8,8 +8,8 @@
 <body>
     User info
 
-    <% for (let field of Object.values(user)) { %>
-        <%- field %>
-    <% } %>
+    <%- user.name %>
+    <img src="<%- user.picture %>" alt="">
+    <%- user.email %>
 </body>
 </html>
